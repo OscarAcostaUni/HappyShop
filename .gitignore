@@ -53,6 +53,7 @@ build/
 # ========================
 # Derby database
 # ========================
-happyShopDB/   # Ignore entire Derby DB folder
-*.log          # Optional: ignore Derby log files
-*.lck          # Optional: ignore Derby lock files
+happyShopDB/
+*.lck
+orders/
+derby.log
