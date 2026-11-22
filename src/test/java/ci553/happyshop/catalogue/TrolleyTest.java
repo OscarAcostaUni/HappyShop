@@ -119,4 +119,23 @@ class TrolleyTest {
         });
     }
 
+    @Test
+    void addingProductsWithDifferentQuantitiesCombinesCorrectly() {
+        Trolley trolley = new Trolley();
+
+        Product toaster1 = new Product(
+                "0003", "Toaster", "0003.jpg", 19.99, 2, 10
+        );
+
+        Product toaster2 = new Product(
+                "0003", "Toaster", "0003.jpg", 19.99, 3, 10
+        );
+
+        trolley.addProduct(toaster1);
+        trolley.addProduct(toaster2);
+
+        assertEquals(1, trolley.getProducts().size());
+        assertEquals(5, trolley.getProducts().get(0).getOrderedQuantity());
+    }
+
 }
