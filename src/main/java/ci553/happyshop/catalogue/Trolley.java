@@ -13,9 +13,13 @@ public class Trolley {
      * Otherwise, a new product is added.
      * Products are sorted by ID in ascending order
      * @param product is the product to add
-     *
+     * @throws IllegalArgumentException if the ordered quantity is zero or below (negative)
      */
     public void addProduct(Product product) {
+        if (product.getOrderedQuantity() <= 0) {
+            throw new IllegalArgumentException("Ordered quantity must be positive");
+        }
+
         for (Product existing : products) {
             if (existing.getProductId().equals(product.getProductId())) {
                 existing.setOrderedQuantity(

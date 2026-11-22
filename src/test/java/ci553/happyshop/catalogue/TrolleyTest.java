@@ -3,6 +3,7 @@ package ci553.happyshop.catalogue;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TrolleyTest {
 
@@ -90,6 +91,32 @@ class TrolleyTest {
 
         assertEquals(1, toaster.getOrderedQuantity());
         assertEquals(2, trolley.getProducts().get(0).getOrderedQuantity());
+    }
+
+    @Test
+    void addingProductWithZeroQuantityThrowsException() {
+        Trolley trolley = new Trolley();
+
+        Product toaster = new Product(
+                "0003", "Toaster", "0003.jpg", 19.99, 0, 10
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            trolley.addProduct(toaster);
+        });
+    }
+
+    @Test
+    void addingProductWithNegativeQuantityThrowsException() {
+        Trolley trolley = new Trolley();
+
+        Product toaster = new Product(
+                "0003", "Toaster", "0003.jpg", 19.99, -2, 10
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            trolley.addProduct(toaster);
+        });
     }
 
 }
